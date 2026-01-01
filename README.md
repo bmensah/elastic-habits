@@ -38,10 +38,10 @@ As long as one of the thresholds is met, the habit is counted as completed. Thro
         the minimum requirement.
       </p>
       <p>
-        For example, if the user does not mark *Low Energy* or *Worked Late* 
-        for the **Exercise** habit but only completed it at the *C* threshold, 
+        For example, if the user does not mark Low Energy or Worked Late 
+        for the Exercise habit but only completed it at the C threshold, 
         the habit does not count as completed as they are below the minimum 
-        requirement of the *A* threshold.
+        requirement of the A threshold.
       </p>
     </td>
   </tr>
@@ -52,7 +52,7 @@ As long as one of the thresholds is met, the habit is counted as completed. Thro
       <td width="60%">
         <p>
           On the other hand, if they did have to work late, then accomplishing 
-          at least the *C* threshold counts as a success.
+          at least the C threshold counts as a success.
         </p>
       </td>
     </tr>
