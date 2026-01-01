@@ -21,6 +21,29 @@ As long as one of the thresholds is met, the habit is counted as completed. Thro
 
 ### Day 1 
 
+<table>
+  <tr>
+    <td width="40%">
+      <img width="100%" alt="image" src="https://github.com/user-attachments/assets/a307ff8f-ec03-44be-a254-85b6f317d835" />
+    </td>
+    <td width="60%">
+      <h3>Day 1</h3>
+      <p>
+        On day 1, I completed a basic setup to build on with just two habits
+        and two threshold conditions.
+      </p>
+      <p>
+        For each habit, there is a required tier based on the threshold
+        conditions and the user's selected tier. These values are compared
+        to determine whether the habit counts as completed or falls below
+        the minimum requirement.
+      </p>
+    </td>
+  </tr>
+</table>
+
+
+
 On day 1, I completed a basic set up to build on with just two habits and two threshold conditions.
 <img width="150" height="375" alt="image" src="https://github.com/user-attachments/assets/a307ff8f-ec03-44be-a254-85b6f317d835" />
 
