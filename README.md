@@ -22,15 +22,15 @@ As long as one of the thresholds is met, the habit is counted as completed. Thro
 ### Day 1 
 
 On day 1, I completed a basic set up to build on with just two habits and two threshold conditions.
-<img width="301" height="755" alt="image" src="https://github.com/user-attachments/assets/a307ff8f-ec03-44be-a254-85b6f317d835" />
+<img width="150" height="375" alt="image" src="https://github.com/user-attachments/assets/a307ff8f-ec03-44be-a254-85b6f317d835" />
 
 For each habit, there is a required tier based on the threshold conditions and the user's selected tier. These two values are compared to decide whether the user successfully completed the habit or failed to meet the minimum requirement. For example, if the user does not mark *Low Energy* or *Worked Late* for the **Exercise** habit but only completed it at the *C* threshold, the habit does not count as completed as they are below the minimum requirement of the *A* threshold. 
 
-<img width="301" height="755" alt="image" src="https://github.com/user-attachments/assets/34856c51-9188-4f34-9e78-edf1a747581b" />
+<img width="150" height="375" alt="image" src="https://github.com/user-attachments/assets/34856c51-9188-4f34-9e78-edf1a747581b" />
 
 On the other hand, if they did have to work late, then accomplishing at least the *C* threshold counts as a success:
 
-<img width="301" height="755" alt="image" src="https://github.com/user-attachments/assets/79f1670d-e5c2-46e7-a506-36b8c837a920" />
+<img width="150" height="375" alt="image" src="https://github.com/user-attachments/assets/79f1670d-e5c2-46e7-a506-36b8c837a920" />
 
 ### Day 2
 
