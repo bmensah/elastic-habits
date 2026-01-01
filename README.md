@@ -21,6 +21,8 @@ As long as one of the thresholds is met, the habit is counted as completed. Thro
 
 ### Day 1: 
 
+On day 1, I completed a basic set up to build on with just two habits and two threshold conditions. 
+
 
 
 
