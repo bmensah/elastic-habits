@@ -37,18 +37,11 @@ As long as one of the thresholds is met, the habit is counted as completed. Thro
         to determine whether the habit counts as completed or falls below
         the minimum requirement.
       </p>
-    </td>
-  </tr>
-  <tr>
-    <td width="40%">
-      <img width="50%" alt="image" src="https://github.com/user-attachments/assets/34856c51-9188-4f34-9e78-edf1a747581b" />
-    </td>
-    <td width="60%">
       <p>
         For example, if the user does not mark *Low Energy* or *Worked Late* 
         for the **Exercise** habit but only completed it at the *C* threshold, 
         the habit does not count as completed as they are below the minimum 
-        requirement of the *A* threshold. 
+        requirement of the *A* threshold.
       </p>
     </td>
   </tr>
