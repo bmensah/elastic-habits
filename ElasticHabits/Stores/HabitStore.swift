@@ -82,21 +82,14 @@ final class HabitStore: ObservableObject {
                 name: "Exercise",
                 tierA: "30 min workout",
                 tierB: "15 min walk",
-                tierC: "5 min stretch",
-                rules: [
-                    Rule(id: UUID(), condition: .workedLate, allowedTier: .C),
-                    Rule(id: UUID(), condition: .lowEnergy, allowedTier: .B)
-                ]
+                tierC: "5 min stretch"
             ),
             Habit(
                 id: UUID(),
                 name: "Reading",
                 tierA: "30 min reading",
                 tierB: "10 min reading",
-                tierC: "Read 1 page",
-                rules: [
-                    Rule(id: UUID(), condition: .lowEnergy, allowedTier: .B)
-                ]
+                tierC: "Read 1 page"
             )
         ]
     }

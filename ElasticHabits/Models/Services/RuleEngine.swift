@@ -10,26 +10,19 @@
 import Foundation
 
 struct RuleEngine {
-    static func requiredTier(habit: Habit, context: DailyContext) -> Tier {
-        var requiredTier = Tier.A
-        
-        for rule in habit.rules {
-            let isActive: Bool
-            switch rule.condition {
-            case .lowEnergy:
-                isActive = context.lowEnergy == true
-            case .workedLate:
-                isActive = context.workedLate == true
-            }
-            
-            if isActive {
-                let currentRaw = requiredTier.rawValue
-                let allowedRaw = rule.allowedTier.rawValue
-                requiredTier = Tier(rawValue: min(currentRaw, allowedRaw)) ?? requiredTier
-            }
+    static func requiredTier(context: DailyContext) -> Tier {
+        // If both conditions are active, required tier is C
+        if context.lowEnergy && context.workedLate {
+            return .C
         }
         
-        return requiredTier
+        // If either condition is active, required tier is B
+        if context.lowEnergy || context.workedLate {
+            return .B
+        }
+        
+        // Default: no conditions active, required tier is A
+        return .A
     }
 }
 

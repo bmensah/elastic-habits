@@ -13,7 +13,7 @@ struct ElasticHabitsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HabitListView()
                 .environmentObject(habitStore)
         }
     }

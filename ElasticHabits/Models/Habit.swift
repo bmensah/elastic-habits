@@ -13,7 +13,6 @@ struct Habit: Identifiable, Codable {
     let tierA: String
     let tierB: String
     let tierC: String
-    let rules: [Rule]
 }
 
 
