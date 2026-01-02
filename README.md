@@ -19,7 +19,7 @@ As long as one of the thresholds is met, the habit is counted as completed. Thro
 
 ## Development Log
 
-### Day 1 
+### Basic Setup 
 
 <table>
   <tr>
@@ -28,7 +28,7 @@ As long as one of the thresholds is met, the habit is counted as completed. Thro
     </td>
     <td width="60%">
       <p>
-        On day 1, I completed a basic setup to build on with just two habits
+        I started with a basic setup to build on with just two habits
         and two threshold conditions.
       </p>
       <p>
@@ -58,7 +58,7 @@ As long as one of the thresholds is met, the habit is counted as completed. Thro
     </tr>
 </table>
 
-### Day 2
+### Local Persistence
 
 
 

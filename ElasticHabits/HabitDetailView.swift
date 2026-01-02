@@ -1,17 +1,9 @@
 //
-//  ContentView.swift
+//  HabitDetailView.swift
 //  ElasticHabits
 //
 //  Created by Bradley Mensah on 12/18/25.
 //
-//  NOTE: This view is a temporary demo used to validate core logic.
-//  It will be replaced once full CRUD and navigation are added.
-//
-//  MARK: - Demo Data
-//  MARK: - State
-//  MARK: - Computered Properties
-//  MARK: - View
-
 
 import SwiftUI
 
@@ -23,18 +15,15 @@ private func tierLabel(_ tier: Tier) -> String {
     }
 }
 
-struct ContentView: View {
+struct HabitDetailView: View {
+    let habitId: UUID
     @EnvironmentObject var habitStore: HabitStore
     
-    @State private var selectedHabitIndex = 0
     @State private var context = DailyContext.default
-    @State private var selectedTier = Tier.B
+    @State private var selectedTier = Tier.A
     
-    private var currentHabit: Habit? {
-        guard !habitStore.habits.isEmpty, selectedHabitIndex < habitStore.habits.count else {
-            return nil
-        }
-        return habitStore.habits[selectedHabitIndex]
+    private var habit: Habit? {
+        habitStore.habits.first { $0.id == habitId }
     }
     
     private var requiredTier: Tier {
@@ -47,17 +36,10 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            if let habit = currentHabit {
+            if let habit = habit {
                 Text(habit.name)
                     .font(.title)
                 
-                Picker("Habit", selection: $selectedHabitIndex) {
-                    ForEach(Array(habitStore.habits.enumerated()), id: \.element.id) { index, habit in
-                        Text(habit.name).tag(index)
-                    }
-                }
-                .pickerStyle(.segmented)
-
                 Toggle("Low Energy", isOn: Binding(
                     get: { context.lowEnergy },
                     set: { context = DailyContext(lowEnergy: $0, workedLate: context.workedLate) }
@@ -73,25 +55,19 @@ struct ContentView: View {
                     Text("B").tag(Tier.B)
                     Text("C").tag(Tier.C)
                 }
+                .pickerStyle(.segmented)
                 Text("Selected: \(tierLabel(selectedTier))")
                 Text("Required: \(tierLabel(requiredTier))")
-                .pickerStyle(.segmented)
                 
                 Text(isCompliant ? "Counts as success" : "Below minimum")
                     .font(.headline)
             } else {
-                Text("No habits available")
+                Text("Habit not found")
                     .font(.title)
                     .foregroundColor(.secondary)
             }
         }
         .padding()
-        .onChange(of: habitStore.habits.count) { oldCount, newCount in
-            if selectedHabitIndex >= newCount && newCount > 0 {
-                selectedHabitIndex = newCount - 1
-            } else if newCount == 0 {
-                selectedHabitIndex = 0
-            }
-        }
     }
 }
+

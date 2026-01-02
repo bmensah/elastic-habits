@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct ElasticHabitsApp: App {
+    @StateObject private var habitStore = HabitStore()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HabitListView()
+                .environmentObject(habitStore)
         }
     }
 }
