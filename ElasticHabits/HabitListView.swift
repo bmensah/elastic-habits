@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HabitListView: View {
     @EnvironmentObject var habitStore: HabitStore
+    @State private var showingAddHabit = false
     
     var body: some View {
         NavigationStack {
@@ -21,6 +22,18 @@ struct HabitListView: View {
             }
             .navigationDestination(for: UUID.self) { habitId in
                 HabitDetailView(habitId: habitId)
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        showingAddHabit = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .sheet(isPresented: $showingAddHabit) {
+                HabitEditView(habit: nil)
             }
         }
     }

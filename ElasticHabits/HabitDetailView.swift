@@ -17,10 +17,12 @@ private func tierLabel(_ tier: Tier) -> String {
 
 struct HabitDetailView: View {
     let habitId: UUID
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var habitStore: HabitStore
     
     @State private var context = DailyContext.default
     @State private var selectedTier = Tier.A
+    @State private var showingEditHabit = false
     
     private var habit: Habit? {
         habitStore.habits.first { $0.id == habitId }
@@ -68,6 +70,23 @@ struct HabitDetailView: View {
             }
         }
         .padding()
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    showingEditHabit = true
+                } label: {
+                    Text("Edit")
+                }
+                .disabled(habit == nil)
+            }
+        }
+        .sheet(isPresented: $showingEditHabit) {
+            if let habit = habit {
+                HabitEditView(habit: habit) {
+                    dismiss()
+                }
+            }
+        }
     }
 }
 
