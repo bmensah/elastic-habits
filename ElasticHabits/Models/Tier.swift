@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Tier: Int {
+enum Tier: Int, Codable {
     case A = 3
     case B = 2
     case C = 1

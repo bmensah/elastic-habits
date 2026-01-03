@@ -19,9 +19,10 @@ struct HabitDetailView: View {
     let habitId: UUID
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var habitStore: HabitStore
+    @EnvironmentObject var dailyContextStore: DailyContextStore
+    @EnvironmentObject var dailyLogStore: DailyLogStore
     
-    @State private var context = DailyContext.default
-    @State private var selectedTier = Tier.A
+    @State private var selectedTier: Tier? = nil
     @State private var showingEditHabit = false
     
     private var habit: Habit? {
@@ -29,11 +30,19 @@ struct HabitDetailView: View {
     }
     
     private var requiredTier: Tier {
-        return RuleEngine.requiredTier(context: context)
+        return RuleEngine.requiredTier(context: dailyContextStore.context)
+    }
+    
+    private var selectedTierLabel: String {
+        if let tier = selectedTier {
+            return tierLabel(tier)
+        }
+        return "Not logged"
     }
     
     private var isCompliant: Bool {
-        selectedTier.rawValue >= requiredTier.rawValue
+        guard let selectedTier = selectedTier else { return false }
+        return selectedTier.rawValue >= requiredTier.rawValue
     }
     
     var body: some View {
@@ -42,23 +51,14 @@ struct HabitDetailView: View {
                 Text(habit.name)
                     .font(.title)
                 
-                Toggle("Low Energy", isOn: Binding(
-                    get: { context.lowEnergy },
-                    set: { context = DailyContext(lowEnergy: $0, workedLate: context.workedLate) }
-                ))
-                
-                Toggle("Worked Late", isOn: Binding(
-                    get: { context.workedLate },
-                    set: { context = DailyContext(lowEnergy: context.lowEnergy, workedLate: $0) }
-                ))
-                
                 Picker("Tier", selection: $selectedTier) {
-                    Text("A").tag(Tier.A)
-                    Text("B").tag(Tier.B)
-                    Text("C").tag(Tier.C)
+                    Text("Not logged").tag(nil as Tier?)
+                    Text("A").tag(Tier.A as Tier?)
+                    Text("B").tag(Tier.B as Tier?)
+                    Text("C").tag(Tier.C as Tier?)
                 }
                 .pickerStyle(.segmented)
-                Text("Selected: \(tierLabel(selectedTier))")
+                Text("Selected: \(selectedTierLabel)")
                 Text("Required: \(tierLabel(requiredTier))")
                 
                 Text(isCompliant ? "Counts as success" : "Below minimum")
@@ -70,6 +70,14 @@ struct HabitDetailView: View {
             }
         }
         .padding()
+        .onAppear {
+            // Load previously logged tier from DailyLogStore
+            selectedTier = dailyLogStore.getLoggedTier(for: habitId)
+        }
+        .onChange(of: selectedTier) { oldValue, newValue in
+            // Save tier selection to DailyLogStore immediately when changed
+            dailyLogStore.logTier(newValue, for: habitId)
+        }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
